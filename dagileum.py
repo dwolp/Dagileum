@@ -9,8 +9,8 @@ selection = ''
 
 
 def add_birthday():
-    new_entry_name = str(input("Skriv inn et navn: "))
-    entered_date = str(input("Skriv inn en dato: "))
+    new_entry_name = str(input(" Skriv inn et navn: "))
+    entered_date = str(input(" Skriv inn en dato: "))
     new_entry_date = convert_to_datetime(entered_date)
     datadict[new_entry_name] = new_entry_date
     save_to_file()
@@ -23,7 +23,7 @@ def open_and_create():
     for line in data:
         x = line.split(";")
         x[1] = x[1].rstrip("\n")
-        datadict[x[0]] = convert_to_datetime(x[1])
+        datadict[x[0].lower] = convert_to_datetime(x[1])
     data.close()
 
 
@@ -50,7 +50,8 @@ def print_days_old():
 
 
 def delete_entry():
-    print("deleted......")
+    delete_this = input(" Hvem vil du slette?: ").lower()
+    datadict.pop(delete_this)
     print_days_old()
 
 
@@ -65,8 +66,8 @@ def check_input():
 open_and_create()
 
 while selection != "q":
-    print(f"\nMeny: (1) Vis  (2) Legg til  (3) Slett  (4) Avslutt")
-    selection = input("Ditt valg: ").lower()
+    print(f"\n Meny: (1) Vis  (2) Legg til  (3) Slett  (4) Avslutt")
+    selection = input(" Ditt valg: ").lower()
     if selection == "legg til" or selection == "2":
         add_birthday()
     elif selection == "vis" or selection == "1":
