@@ -9,7 +9,7 @@ selection = ''
 
 
 def add_birthday():
-    new_entry_name = str(input(" Skriv inn et navn: "))
+    new_entry_name = str(input(" Skriv inn et navn: ")).lower()
     entered_date = str(input(" Skriv inn en dato: "))
     new_entry_date = convert_to_datetime(entered_date)
     datadict[new_entry_name] = new_entry_date
@@ -46,12 +46,16 @@ def print_days_old():
         days_next = (floor(days_old / 1000) + 1) * 1000
         date_next = (today + timedelta(days_next - days_old)).strftime("%d.%m.%Y")
         print(f"{people.capitalize():>15} | {date_born:>11} | {years:>3} | {days_old:>6} | "
-              f"{people} blir {days_next} dager den {date_next}")
+              f"{people.capitalize()} blir {days_next} dager den {date_next}")
 
 
 def delete_entry():
     delete_this = input(" Hvem vil du slette?: ").lower()
-    datadict.pop(delete_this)
+    if delete_this in datadict:
+        datadict.pop(delete_this)
+    else:
+        print(" Denne finnes ikke.")
+        continue
     print_days_old()
 
 
