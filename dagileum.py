@@ -55,7 +55,6 @@ def delete_entry():
         datadict.pop(delete_this)
     else:
         print(" Denne finnes ikke.")
-        continue
     print_days_old()
 
 
