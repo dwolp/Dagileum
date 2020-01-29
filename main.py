@@ -45,7 +45,7 @@ def print_days_old():
 
 
 def delete_entry():
-    print("")
+    print("deleted")
 
 
 def save_to_file():
@@ -58,7 +58,7 @@ def check_input():
 
 open_and_create()
 
-while selection is not "q":
+while selection != "q":
     print(f"\nMeny: (1) Vis  (2) Legg til  (3) Slett  (4) Avslutt")
     selection = input("Ditt valg: ").lower()
     if selection == "legg til" or selection == "2":
