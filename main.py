@@ -65,6 +65,8 @@ while selection != "q":
         add_birthday()
     elif selection == "vis" or selection == "1":
         print_days_old()
+    elif selection == "slett" or selection == "3":
+        delete_entry()
     elif selection == "avslutt" or selection == "4":
         print("Ha det bra..")
         break
