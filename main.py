@@ -1,6 +1,8 @@
 from datetime import *
 from math import *
+import os
 
+clear = lambda: os.system('cls')
 today = datetime.now()
 datadict = {}
 selection = ''
@@ -12,6 +14,7 @@ def add_birthday():
     new_entry_date = convert_to_datetime(entered_date)
     datadict[new_entry_name] = new_entry_date
     save_to_file()
+    print_days_old()
 
 
 def open_and_create():
@@ -32,6 +35,8 @@ def convert_to_datetime(x):
 
 
 def print_days_old():
+    clear()
+    print(" ")
     print("           Navn |  Fødselsdag |  År |  Dager | Neste dagileum ")
     print("       " + "*"*80)
     for people in datadict:
@@ -46,6 +51,7 @@ def print_days_old():
 
 def delete_entry():
     print("deleted......")
+    print_days_old()
 
 
 def save_to_file():
