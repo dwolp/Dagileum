@@ -16,7 +16,7 @@ def add_birthday():
     while len(entered_date) != 10:
         entered_date = str(input(" Skriv inn en dato: "))
         if len(entered_date) != 10:
-            print(" Bruk formen DD.MM.ÅÅÅÅ. Takk!")
+            print(" Vennligst bruk formen DD.MM.ÅÅÅÅ")
                   
     new_entry_date = convert_to_datetime(entered_date)
     datadict[new_entry_name] = new_entry_date
@@ -70,10 +70,6 @@ def save_to_file():
     print("")
 
 
-def check_input():
-    print("")
-
-
 open_and_create()
 
 while selection != "q":
@@ -87,7 +83,7 @@ while selection != "q":
         delete_entry()
     elif selection == "avslutt" or selection == "4":
         print(" Ha det bra..")
-        time.sleep(3)
+        time.sleep(1)
         break
     else:
         print(" Prøv igjen..")
