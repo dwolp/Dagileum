@@ -56,7 +56,7 @@ def delete_entry():
         datadict.pop(delete_this)
     else:
         print(" Denne finnes ikke.")
-        time.sleep(3)
+        time.sleep(1)
     print_days_old()
 
 
@@ -81,6 +81,8 @@ while selection != "q":
         delete_entry()
     elif selection == "avslutt" or selection == "4":
         print(" Ha det bra..")
+        time.sleep(1)
         break
     else:
         print(" Prøv igjen..")
+        time.sleep(1)
