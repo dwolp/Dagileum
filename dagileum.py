@@ -1,6 +1,7 @@
 from datetime import *
 from math import *
 import os
+import time
 
 clear = lambda: os.system('cls')
 today = datetime.now()
@@ -55,6 +56,7 @@ def delete_entry():
         datadict.pop(delete_this)
     else:
         print(" Denne finnes ikke.")
+        time.sleep(3)
     print_days_old()
 
 
