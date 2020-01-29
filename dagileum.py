@@ -16,7 +16,7 @@ def add_birthday():
     while len(entered_date) != 10:
         entered_date = str(input(" Skriv inn en dato: "))
         if len(entered_date) != 10:
-            Print(" Bruk formen DD.MM.ÅÅÅÅ. Takk!")
+            print(" Bruk formen DD.MM.ÅÅÅÅ. Takk!")
                   
     new_entry_date = convert_to_datetime(entered_date)
     datadict[new_entry_name] = new_entry_date
