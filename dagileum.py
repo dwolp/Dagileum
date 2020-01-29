@@ -3,13 +3,17 @@ from math import *
 import os
 import time
 
-clear = lambda: os.system('cls')
 today = datetime.now()
 datadict = {}
 selection = ''
 
 
+def clear():
+    os.system('cls')
+
+
 def add_birthday():
+    # adds an entry
     new_entry_name = str(input(" Skriv inn et navn: ")).lower()
     entered_date = ''
     
@@ -42,6 +46,7 @@ def convert_to_datetime(x):
 
 
 def print_days_old():
+    # prints header and the whole table
     clear()
     print(" ")
     print("           Navn |  Fødselsdag |  År |  Dager | Neste dagileum ")
@@ -57,6 +62,7 @@ def print_days_old():
 
 
 def delete_entry():
+    # deletes an entry
     delete_this = input(" Hvem vil du slette?: ").lower()
     if delete_this in datadict:
         datadict.pop(delete_this)
@@ -67,12 +73,20 @@ def delete_entry():
 
 
 def save_to_file():
-    print("")
+    # open file and save dictionary
+    data = open("data.txt", "w")
+    for people in datadict:
+        date_born = datadict[people].strftime("%d.%m.%Y")
+        data.write(f"{people};{date_born}\n")
+    data.close()
 
+
+# program starts here
 
 open_and_create()
 
-while selection != "q":
+
+while selection != 'q':
     print(f"\n Meny: (1) Vis  (2) Legg til  (3) Slett  (4) Avslutt")
     selection = input(" Ditt valg: ").lower()
     if selection == "legg til" or selection == "2":
@@ -87,4 +101,3 @@ while selection != "q":
         break
     else:
         print(" Prøv igjen..")
-
