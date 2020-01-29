@@ -23,7 +23,7 @@ def open_and_create():
     for line in data:
         x = line.split(";")
         x[1] = x[1].rstrip("\n")
-        datadict[x[0].lower] = convert_to_datetime(x[1])
+        datadict[x[0].lower()] = convert_to_datetime(x[1])
     data.close()
 
 
@@ -38,14 +38,14 @@ def print_days_old():
     clear()
     print(" ")
     print("           Navn |  Fødselsdag |  År |  Dager | Neste dagileum ")
-    print("       " + "*"*80)
+    print("       " + "*" * 80)
     for people in datadict:
         date_born = datadict[people].strftime("%d.%m.%Y")
         days_old = (today - datadict[people]).days
         years = floor(days_old / 365)
-        days_next = (floor(days_old/1000)+1)*1000
+        days_next = (floor(days_old / 1000) + 1) * 1000
         date_next = (today + timedelta(days_next - days_old)).strftime("%d.%m.%Y")
-        print(f"{people:>15} | {date_born:>11} | {years:>3} | {days_old:>6} | "
+        print(f"{people.capitalize():>15} | {date_born:>11} | {years:>3} | {days_old:>6} | "
               f"{people} blir {days_next} dager den {date_next}")
 
 
@@ -75,7 +75,7 @@ while selection != "q":
     elif selection == "slett" or selection == "3":
         delete_entry()
     elif selection == "avslutt" or selection == "4":
-        print("Ha det bra..")
+        print(" Ha det bra..")
         break
     else:
-        print("Prøv igjen..")
+        print(" Prøv igjen..")
