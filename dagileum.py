@@ -11,7 +11,13 @@ selection = ''
 
 def add_birthday():
     new_entry_name = str(input(" Skriv inn et navn: ")).lower()
-    entered_date = str(input(" Skriv inn en dato: "))
+    entered_date = ''
+    
+    while len(entered_date) != 10:
+        entered_date = str(input(" Skriv inn en dato: "))
+        if len(entered_date) != 10:
+            Print(" Bruk formen DD.MM.ÅÅÅÅ. Takk!")
+                  
     new_entry_date = convert_to_datetime(entered_date)
     datadict[new_entry_name] = new_entry_date
     save_to_file()
