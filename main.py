@@ -45,7 +45,7 @@ def print_days_old():
 
 
 def delete_entry():
-    print("deleted")
+    print("deleted..")
 
 
 def save_to_file():
