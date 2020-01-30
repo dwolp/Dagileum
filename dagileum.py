@@ -98,7 +98,7 @@ def export_to_calendar():
         calfile.write(f"END:VEVENT\n")
     calfile.write(f"END:VCALENDAR")
     calfile.close()
-    print(f"OK, .ics-fil er opprettet..")
+    print(f" OK! .ics-fil er opprettet..")
     time.sleep(0.5)
     print_days_old()
 
