@@ -61,7 +61,7 @@ def print_days_old():
         date_next_for_cal = (today + timedelta(days_next - days_old)).strftime("%Y%m%d")
         print(f"{people.capitalize():>15} | {date_born:>11} | {years:>3} | {days_old:>6} | "
               f"{people.capitalize()} blir {days_next} dager den {date_next}")
-        make_calendar_dict(people, days_next, date_next_for_cal)
+        make_calendar_dict(people.capitalize(), days_next, date_next_for_cal)
 
 
 def delete_entry():
