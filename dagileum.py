@@ -86,8 +86,10 @@ def save_to_file():
     
 def export_to_calendar():
     # creates an ICS-file that can be imported to any calendar
-    calfile = open("dagileum.ics", "a")
+    calfile = open("dagileum.ics", "w")
     calfile.write(f"BEGIN:VCALENDAR\n")
+    calfile.close()    
+    calfile = open("dagileum.ics", "a")
     for people in calendardict:
         calfile.write(f"BEGIN:VEVENT\n")
         calfile.write(f"DTSTART:{calendardict[people][2]}\n")
@@ -96,6 +98,9 @@ def export_to_calendar():
         calfile.write(f"END:VEVENT\n")
     calfile.write(f"END:VCALENDAR")
     calfile.close()
+    print(f"OK, .ics-fil er opprettet..")
+    time.sleep(0.5)
+    print_days_old()
 
 
 def make_calendar_dict(name, days, date):
