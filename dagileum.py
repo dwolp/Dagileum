@@ -6,6 +6,7 @@ import time
 today = datetime.now()
 datadict = {}
 selection = ''
+calendardict = {}
 
 
 def clear():
@@ -51,14 +52,16 @@ def print_days_old():
     print(" ")
     print("           Navn |  Fødselsdag |  År |  Dager | Neste dagileum ")
     print("       " + "*" * 80)
-    for people in datadict:
+    for people in datadict:       
         date_born = datadict[people].strftime("%d.%m.%Y")
         days_old = (today - datadict[people]).days
         years = floor(days_old / 365)
         days_next = (floor(days_old / 1000) + 1) * 1000
         date_next = (today + timedelta(days_next - days_old)).strftime("%d.%m.%Y")
+        date_next_for_cal = (today + timedelta(days_next - days_old)).strftime("%Y%m%d")
         print(f"{people.capitalize():>15} | {date_born:>11} | {years:>3} | {days_old:>6} | "
               f"{people.capitalize()} blir {days_next} dager den {date_next}")
+        make_calendar_dict(people, days_next, date_next_for_cal)
 
 
 def delete_entry():
@@ -80,6 +83,24 @@ def save_to_file():
         data.write(f"{people};{date_born}\n")
     data.close()
 
+    
+def export_to_calendar():
+    # creates an ICS-file that can be imported to any calendar
+    calfile = open("dagileum.ics", "w")
+    calfile.write(f"BEGIN:VCALENDAR\n")
+    for people in calendardict:
+        calfile.append(f"BEGIN:VEVENT\n")
+        calfile.append(f"DTSTART:{calendardict[people][2]}\n")
+        calfile.append(f"DTEND:{calendardict[people][2]}\n")
+        calfile.append(f"SUMMARY:{calendardict[people][0]} {calendardict[people][1]} dager \n")
+        calfile.append(f"END:VEVENT\n")
+    calfile.append(f"END:VCALENDAR")
+    calfile.close()
+
+
+def make_calendar_dict(name, days, date):
+    calendardict[name] = [name, days, date]
+    
 
 # program starts here
 
