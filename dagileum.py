@@ -114,9 +114,9 @@ while selection != 'q':
         add_birthday()
     elif selection == "vis" or selection == "1":
         print_days_old()
-    elif selection == "slett" or selection == "3":
+    elif selection == "slett" or selection == "4":
         delete_entry()
-    elif selection == "eksporter" or selection == "4":
+    elif selection == "eksporter" or selection == "3":
         export_to_calendar()
     elif selection == "avslutt" or selection == "5":
         print(" Ha det bra..")
