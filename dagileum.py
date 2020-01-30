@@ -108,7 +108,7 @@ open_and_create()
 
 
 while selection != 'q':
-    print(f"\n Meny: (1) Vis  (2) Legg til  (3) Slett  (4) Avslutt")
+    print(f"\n Meny: (1) Vis  (2) Legg til  (3) Eksporter til kalender  (4) Slett  (5) Avslutt")
     selection = input(" Ditt valg: ").lower()
     if selection == "legg til" or selection == "2":
         add_birthday()
@@ -116,7 +116,9 @@ while selection != 'q':
         print_days_old()
     elif selection == "slett" or selection == "3":
         delete_entry()
-    elif selection == "avslutt" or selection == "4":
+    elif selection == "eksporter" or selection == "4":
+        export_to_calendar()
+    elif selection == "avslutt" or selection == "5":
         print(" Ha det bra..")
         time.sleep(1)
         break
