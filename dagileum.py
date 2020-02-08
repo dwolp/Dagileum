@@ -1,10 +1,10 @@
+import os
+from time import sleep as sleep_for
 from datetime import *
 from math import *
-import os
-import time
+import pickle
 
 today = datetime.now()
-datadict = {}
 selection = ''
 calendardict = {}
 
@@ -25,18 +25,21 @@ def add_birthday():
                   
     new_entry_date = convert_to_datetime(entered_date)
     datadict[new_entry_name] = new_entry_date
-    save_to_file()
+    pickle_data(datadict)
     print_days_old()
 
 
-def open_and_create():
-    # open file and create dictionary
-    data = open("data.txt", "r")
-    for line in data:
-        x = line.split(";")
-        x[1] = x[1].rstrip("\n")
-        datadict[x[0].lower()] = convert_to_datetime(x[1])
-    data.close()
+def pickle_data(x):
+    outfile = open('data', 'wb')
+    pickle.dump(x, outfile)
+    outfile.close()
+
+
+def unpickle_data(x):
+    infile = open(x, 'rb')
+    x = pickle.load(infile)
+    infile.close()
+    return x 
 
 
 def convert_to_datetime(x):
@@ -71,17 +74,9 @@ def delete_entry():
         datadict.pop(delete_this)
     else:
         print(" Denne finnes ikke.")
-        time.sleep(0.4)
+        sleep_for(2)
+    pickle_data(datadict)
     print_days_old()
-
-
-def save_to_file():
-    # open file and save dictionary
-    data = open("data.txt", "w")
-    for people in datadict:
-        date_born = datadict[people].strftime("%d.%m.%Y")
-        data.write(f"{people};{date_born}\n")
-    data.close()
 
     
 def export_to_calendar():
@@ -99,17 +94,17 @@ def export_to_calendar():
     calfile.write(f"END:VCALENDAR")
     calfile.close()
     print(f" OK! .ics-fil er opprettet..")
-    time.sleep(0.5)
+    sleep_for(3)
     print_days_old()
 
 
-def make_calendar_dict(name, days, date):
-    calendardict[name] = [name, days, date]
+def make_calendar_dict(name, days, dato):
+    calendardict[name] = [name, days, dato]
     
 
 # program starts here
 
-open_and_create()
+datadict = unpickle_data('data')
 
 
 while selection != 'q':
@@ -125,7 +120,7 @@ while selection != 'q':
         export_to_calendar()
     elif selection == "avslutt" or selection == "5":
         print(" Ha det bra..")
-        time.sleep(1)
+        sleep_for(2)
         break
     else:
         print(" Prøv igjen..")
